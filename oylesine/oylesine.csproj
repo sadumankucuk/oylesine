@@ -199,18 +199,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Arkadaslik.cs">
-      <DependentUpon>oylesine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Begeniler.cs">
-      <DependentUpon>oylesine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cinsiyetler.cs">
-      <DependentUpon>oylesine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Gonderiler.cs">
-      <DependentUpon>oylesine.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Kontrol.cs" />
     <Compile Include="Models\GonderiIstek.cs" />
     <Compile Include="Models\KullaniciIstek.cs" />
@@ -250,16 +238,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\oylesine.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>oylesine.edmx</DependentUpon>
-      <LastGenOutput>oylesine.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\oylesine.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>oylesine.edmx</DependentUpon>
-      <LastGenOutput>oylesine.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -283,13 +261,6 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="Models\oylesine.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>oylesine.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\oylesine.edmx.diagram">
-      <DependentUpon>oylesine.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

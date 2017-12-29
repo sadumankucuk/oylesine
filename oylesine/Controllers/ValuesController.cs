@@ -76,6 +76,27 @@ namespace oylesine.Controllers
             return k;
         }
 
+        [HttpPost]
+        public bool YorumEkle(int gonderiID, int kullaniciID, string yorum)
+        {
+            bool Control = true;
+            try
+            {
+                db.Yorumlars.Add(new Yorumlar()
+                {
+                    GonderiID = gonderiID,
+                    KullaniciID = kullaniciID,
+                    Yorum = yorum
+                });
+                db.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+                Control = false;
+            }
+            return Control;
+        }
         //GET api/values
         public IEnumerable<string> Get()
         {

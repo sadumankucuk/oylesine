@@ -121,43 +121,74 @@ namespace oylesine.Controllers
             }
             return k;
         }
-        //[HttpPost]
-        //public GonderiSil([FromBody]GonderiSilIstek gs)
-        //{
-        //    try
-        //    {
-
-        //    }
-        //    catch 
-        //    {
-
-        //    }
-        //}
+        [HttpPost]
+        public Kontrol GonderiSil([FromBody]GonderiSilIstek gs)
+        {
+            Kontrol k = new Kontrol();
+            try
+            {
+                using (db=new oylesineEntities())
+                {
+                    Gonderiler gonderi= db.Gonderilers.Find(gs.gonderiID);
+                    YorumSilIstek yorum = new YorumSilIstek();
+                    db.Gonderilers.Remove(gonderi);
+                    YorumSil(yorum);
+                    //todo begeni sil
+                    db.SaveChanges();
+                    k.basari = true;
+                }
+            }
+            catch
+            {
+                k.basari = false;
+            }
+            return k;
+        }
+        [HttpPost]
+        public Kontrol YorumSil([FromBody]YorumSilIstek y)
+        {
+            Kontrol k = new Kontrol();
+            try
+            {
+                using (db=new oylesineEntities())
+                {
+                    Yorumlar yorum = db.Yorumlars.Find(y.yorumID);
+                    db.Yorumlars.Remove(yorum);
+                    db.SaveChanges();
+                    k.basari = true;
+                }
+            }
+            catch 
+            {
+                k.basari = false;
+            }
+            return k;
+        }
         //GET api/values
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };             
         }
 
-        [HttpPost]
-        public Kontrol KullaniciSil([FromBody]KullaniciSilIstek sil)
-        {
-            Kontrol Control = new Kontrol();
-            try
-            {
-                using (db = new oylesineEntities())
-                {
-                    kullanici = db.Kullanicilars.Find(sil.kullaniciID);
-                    db.Kullanicilars.Remove(kullanici);
-                    Control.basari = true;
-                }
-            }
-            catch (Exception)
-            {
-                Control.basari = false;
-            }
-            return Control;
-        }
+        //[HttpPost]
+        //public Kontrol KullaniciSil([FromBody]KullaniciSilIstek sil)
+        //{
+        //    Kontrol Control = new Kontrol();
+        //    try
+        //    {
+        //        using (db = new oylesineEntities())
+        //        {
+        //            kullanici = db.Kullanicilars.Find(sil.kullaniciID);
+        //            db.Kullanicilars.Remove(kullanici);
+        //            Control.basari = true;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        Control.basari = false;
+        //    }
+        //    return Control;
+        //}
 
 
 

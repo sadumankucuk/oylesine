@@ -170,28 +170,28 @@ namespace oylesine.Controllers
             return new string[] { "value1", "value2" };             
         }
 
-        //[HttpPost]
-        //public Kontrol KullaniciSil([FromBody]KullaniciSilIstek sil)
-        //{
-        //    Kontrol Control = new Kontrol();
-        //    try
-        //    {
-        //        using (db = new oylesineEntities())
-        //        {
-        //            kullanici = db.Kullanicilars.Find(sil.kullaniciID);
-        //            db.Kullanicilars.Remove(kullanici);
-        //            Control.basari = true;
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Control.basari = false;
-        //    }
-        //    return Control;
-        //}
+        [HttpPost]
+        public Kontrol KullaniciSil([FromBody]KullaniciSilIstek sil)
+        {
+            Kontrol Control = new Kontrol();
+            try
+            {
+                using (db = new oylesineEntities())
+                {
+                    kullanici = db.Kullanicilars.Find(sil.kullaniciID);
+                    db.Kullanicilars.Remove(kullanici);
+                    Control.basari = true;
+                }
+            }
+            catch (Exception)
+            {
+                Control.basari = false;
+            }
+            return Control;
+        }
 
 
 
-       
+
     }
 }

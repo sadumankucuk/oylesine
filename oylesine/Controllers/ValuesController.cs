@@ -1,4 +1,5 @@
 ﻿using oylesine.Models;
+using oylesine.Models.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,36 +17,63 @@ namespace oylesine.Controllers
 
 
 
-        [HttpGet]
-        public bool KullaniciEkle(string ad, string soyad, string kullaniciAdi, string email, string parola, string fotograf, string dogumTarihi, int telefon, int cinsiyetID, string kayitTarihi)
+        [HttpPost]
+        public Kontrol KullaniciEkle([FromBody]KullaniciIstek k)
         {
-            bool control = true;
+            Kontrol control = new Kontrol();
             try
             {
                 using (db = new oylesineEntities())
                 {
                     db.Kullanicilars.Add(new Kullanicilar()
                     {
-                        Ad = ad,
-                        Soyad = soyad,
-                        KullaniciAdi = kullaniciAdi,
-                        Email = email,
-                        Parola = parola,
-                        Fotograf = fotograf,
-                        DogumTarihi = Convert.ToDateTime(dogumTarihi),
-                        Telefon = telefon,
-                        CinsiyetID = cinsiyetID,
-                        KayitTarihi = Convert.ToDateTime(kayitTarihi)
+                        Ad = k.ad,
+                        Soyad = k.soyad,
+                        KullaniciAdi = k.kullaniciAdi,
+                        Email = k.email,
+                        Parola = k.parola,
+                        Fotograf = k.fotograf,
+                        DogumTarihi = Convert.ToDateTime(k.dogumTarihi),
+                        Telefon = k.telefon,
+                        CinsiyetID = k.cinsiyetID,
+                        KayitTarihi = DateTime.Now
                     });
+                    db.SaveChanges();
+                    control.basari = true;
 
                 }
             }
-            catch (Exception)
+            catch
             {
-                control = false;
-                throw;
+                control.basari = false;
             }
             return control;
+        }
+
+        [HttpPost]
+        public Kontrol GonderiEkle([FromBody]GonderiIstek g)
+        {
+            Kontrol k = new Kontrol();
+            try
+            {
+                using (db=new oylesineEntities())
+                {
+                    db.Gonderilers.Add(new Gonderiler()
+                    {
+                        KullaniciID = g.kullaniciID,
+                        Icerik = g.icerik,
+                        MedyaID = g.medyaID,
+                        GonderiTarihi = DateTime.Now
+                    });
+                    db.SaveChanges();
+                    k.basari = true;
+                }
+            }
+            catch
+            {
+                k.basari = false;
+            }
+            return k;
         }
 
         //GET api/values

@@ -32,7 +32,7 @@ namespace oylesine.Models
         public string Parola { get; set; }
         public string Fotograf { get; set; }
         public Nullable<System.DateTime> DogumTarihi { get; set; }
-        public Nullable<int> Telefon { get; set; }
+        public string Telefon { get; set; }
         public Nullable<int> CinsiyetID { get; set; }
         public System.DateTime KayitTarihi { get; set; }
     

@@ -17,7 +17,7 @@ namespace oylesine.Controllers
 
 
         [HttpGet]
-        public bool KullaniciEkle(string ad, string soyad, string kullaniciAdi, string email, string parola, string fotograf, string dogumTarihi, int telefon, int cinsiyetID, string kayitTarihi)
+        public bool KullaniciEkle(string ad, string soyad, string kullaniciAdi, string email, string parola, string fotograf, string dogumTarihi, string telefon, int cinsiyetID, string kayitTarihi)
         {
             bool control = true;
             try
@@ -37,7 +37,7 @@ namespace oylesine.Controllers
                         CinsiyetID = cinsiyetID,
                         KayitTarihi = Convert.ToDateTime(kayitTarihi)
                     });
-
+                    db.SaveChanges();
                 }
             }
             catch (Exception)
@@ -48,6 +48,27 @@ namespace oylesine.Controllers
             return control;
         }
 
+        [HttpPost]
+        public bool YorumEkle(int gonderiID, int kullaniciID, string yorum)
+        {
+            bool Control = true;
+            try
+            {
+                db.Yorumlars.Add(new Yorumlar()
+                {
+                    GonderiID = gonderiID,
+                    KullaniciID = kullaniciID,
+                    Yorum = yorum
+                });
+                db.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+                Control = false;
+            }
+            return Control;
+        }
         //GET api/values
         public IEnumerable<string> Get()
         {

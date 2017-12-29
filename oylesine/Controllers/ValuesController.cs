@@ -98,6 +98,7 @@ namespace oylesine.Controllers
             }
             return Control;
         }
+
         [HttpPost]
         public Kontrol Begen([FromBody]BegeniIstek b)
         {
@@ -122,6 +123,7 @@ namespace oylesine.Controllers
             }
             return k;
         }
+
         //[HttpPost]
         //public GonderiSil([FromBody]GonderiSilIstek gs)
         //{
@@ -134,11 +136,6 @@ namespace oylesine.Controllers
 
         //    }
         //}
-        //GET api/values
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };             
-        }
 
         [HttpPost]
         public Kontrol KullaniciSil([FromBody]KullaniciSilIstek sil)

@@ -184,6 +184,7 @@ namespace oylesine.Controllers
                 {
                     Kullanicilar kullanici = new Kullanicilar();
                     kullanici = db.Kullanicilars.Find(sil.kullaniciID);
+
                     db.Kullanicilars.Remove(kullanici);
                     db.SaveChanges();
                     Control.basari = true;
@@ -196,6 +197,28 @@ namespace oylesine.Controllers
             return Control;
         }
 
+        [HttpPost]
+        public Kontrol BegeniGeriAl([FromBody]BegeniGeriAlIstek b)
+        {
+            Kontrol Control = new Kontrol();
+            try
+            {
+                using (db = new oylesineEntities())
+                {
+
+                    Begeniler begeni = new Begeniler();
+                    begeni = db.Begenilers.Find(b.begeniID);
+                    db.Begenilers.Remove(begeni);
+                    db.SaveChanges();
+                    Control.basari = true;
+                }
+            }
+            catch
+            {
+                Control.basari = false;
+            }
+            return Control;
+        }
 
 
 

@@ -200,12 +200,51 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Arkadaslik.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BegeniIstek.cs" />
+    <Compile Include="Models\Begeniler.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cinsiyetler.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gonderiler.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GonderiSilIstek.cs" />
     <Compile Include="Models\Kontrol.cs" />
     <Compile Include="Models\GonderiIstek.cs" />
     <Compile Include="Models\KullaniciIstek.cs" />
+    <Compile Include="Models\Kullanicilar.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Medyalar.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oylesine.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>oylesine.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oylesine.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oylesine.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>oylesine.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\YorumIstek.cs" />
+    <Compile Include="Models\Yorumlar.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +320,16 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\oylesine.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>oylesine.edmx</DependentUpon>
+      <LastGenOutput>oylesine.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\oylesine.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>oylesine.edmx</DependentUpon>
+      <LastGenOutput>oylesine.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -314,6 +363,13 @@
     <Content Include="Content\fonts\Simple-Line-Icons.ttf" />
     <Content Include="Content\fonts\Simple-Line-Icons.woff" />
     <Content Include="Content\fonts\Simple-Line-Icons.woff2" />
+    <EntityDeploy Include="Models\oylesine.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>oylesine.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\oylesine.edmx.diagram">
+      <DependentUpon>oylesine.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

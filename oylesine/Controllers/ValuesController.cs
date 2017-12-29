@@ -1,4 +1,5 @@
-﻿using System;
+﻿using oylesine.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,38 +11,42 @@ namespace oylesine.Controllers
     
     public class ValuesController : ApiController
     {
-        //oylesineEntities db = new oylesineEntities();
-        //Kullanici kullanici = new Kullanici();
+        oylesineEntities db = new oylesineEntities();
+        Kullanici kullanici = new Kullanici();
 
-        //public Kullanici KullaniciEkle(string ad, string soyad, string kullaniciAdi, string email, string parola, string fotograf, datetime dogumTarihi, int telefon, int cinsiyetID, datetime kayitTarihi)
-        //{
-        //    try
-        //    {
-        //        using (db = new oylesineEntities())
-        //        {
-        //            db.Kullanicis.Add(new Kullanici()
-        //            {
-        //                Ad = ad,
-        //                Soyad = soyad,
-        //                KullaniciAdi = kullaniciAdi,
-       //                 Email = email,
-        //                Parola = parola,
-        //                Fotograf=fotograf,
-        //                DogumTarihi=dogumTarihi,
-        //                Telefon=telefon,
-        //                CinsiyetID=cinsiyetID,
-        //                KayitTarihi=kayitTarihi
-        //                
-        //            });
+     
 
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
+        [HttpGet]
+        public bool KullaniciEkle(string ad, string soyad, string kullaniciAdi, string email, string parola, string fotograf, DateTime dogumTarihi, int telefon, int cinsiyetID, DateTime kayitTarihi)
+        {
+            bool control = true;
+            try
+            {
+                using (db = new oylesineEntities())
+                {
+                    db.Kullanicis.Add(new Kullanici()
+                    {
+                        Ad = ad,
+                        Soyad = soyad,
+                        KullaniciAdi = kullaniciAdi,
+                        Email = email,
+                        Parola = parola,
+                        Fotograf = fotograf,
+                        DogumTarihi = dogumTarihi,
+                        Telefon = telefon,
+                        CinsiyetID = cinsiyetID,
+                        KayitTarihi = kayitTarihi
+                    });
 
-        //        throw;
-        //    }
-        //}
+                }
+            }
+            catch (Exception)
+            {
+                control = false;
+                throw;
+            }
+            return control;
+        }
 
         //GET api/values
         public IEnumerable<string> Get()

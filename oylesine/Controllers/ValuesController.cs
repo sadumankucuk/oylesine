@@ -84,7 +84,8 @@ namespace oylesine.Controllers
                     {
                         GonderiID = y.gonderiID,
                         KullaniciID = y.kullaniciID,
-                        Yorum = y.yorum
+                        Yorum = y.yorum,
+                        YorumTarihi=DateTime.Now
                     });
                     db.SaveChanges();
                     Control.basari = true;
@@ -173,13 +174,16 @@ namespace oylesine.Controllers
         [HttpPost]
         public Kontrol KullaniciSil([FromBody]KullaniciSilIstek sil)
         {
+            
             Kontrol Control = new Kontrol();
             try
             {
                 using (db = new oylesineEntities())
                 {
+                    Kullanicilar kullanici = new Kullanicilar();
                     kullanici = db.Kullanicilars.Find(sil.kullaniciID);
                     db.Kullanicilars.Remove(kullanici);
+                    db.SaveChanges();
                     Control.basari = true;
                 }
             }

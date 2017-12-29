@@ -13,19 +13,25 @@ namespace oylesine.Controllers
         //oylesineEntities db = new oylesineEntities();
         //Kullanici kullanici = new Kullanici();
 
-        //public Kullanici KullaniciEkle(string Ad,string Soyad, string KullaniciAdi, string email, string parola, string fotoğraf, string )
+        //public Kullanici KullaniciEkle(string ad, string soyad, string kullaniciAdi, string email, string parola, string fotograf, datetime dogumTarihi, int telefon, int cinsiyetID, datetime kayitTarihi)
         //{
         //    try
         //    {
-        //        using (db=new oylesineEntities())
+        //        using (db = new oylesineEntities())
         //        {
         //            db.Kullanicis.Add(new Kullanici()
         //            {
-        //                Ad=Ad,
-        //                Soyad=Soyad,
-        //                KullaniciAdi=KullaniciAdi,
-        //                Parola=parola,
-        //                Mail=email
+        //                Ad = ad,
+        //                Soyad = soyad,
+        //                KullaniciAdi = kullaniciAdi,
+       //                 Email = email,
+        //                Parola = parola,
+        //                Fotograf=fotograf,
+        //                DogumTarihi=dogumTarihi,
+        //                Telefon=telefon,
+        //                CinsiyetID=cinsiyetID,
+        //                KayitTarihi=kayitTarihi
+        //                
         //            });
 
         //        }
@@ -37,7 +43,7 @@ namespace oylesine.Controllers
         //    }
         //}
 
-        // GET api/values
+        //GET api/values
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };             

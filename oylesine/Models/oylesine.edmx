@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="oylesineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Arkadaslik">
+          <Key>
+            <PropertyRef Name="ArkadaslikID" />
+          </Key>
+          <Property Name="ArkadaslikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kullanici1ID" Type="int" Nullable="false" />
+          <Property Name="Kullanici2ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Begeni">
+          <Key>
+            <PropertyRef Name="BegeniID" />
+          </Key>
+          <Property Name="BegeniID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="GonderiID" Type="int" Nullable="false" />
+          <Property Name="Begeni" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cinsiyet">
+          <Key>
+            <PropertyRef Name="CinsiyetID" />
+          </Key>
+          <Property Name="CinsiyetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cinsiyet" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gonderi">
+          <Key>
+            <PropertyRef Name="GonderiID" />
+          </Key>
+          <Property Name="GonderiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="Icerik" Type="nvarchar" MaxLength="250" />
+          <Property Name="MedyaID" Type="int" />
+          <Property Name="GonderiTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="25" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="25" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Parola" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="Fotograf" Type="nvarchar" MaxLength="150" />
+          <Property Name="DogumTarihi" Type="datetime" />
+          <Property Name="Telefon" Type="int" />
+          <Property Name="CinsiyetID" Type="int" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medya">
+          <Key>
+            <PropertyRef Name="MedyaID" />
+          </Key>
+          <Property Name="MedyaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="YorumID" />
+          </Key>
+          <Property Name="YorumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GonderiID" Type="int" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="Yorum" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Arkadaslik_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Arkadaslik" Type="Self.Arkadaslik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Arkadaslik">
+              <PropertyRef Name="Kullanici2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arkadaslik_Kullanici1">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Arkadaslik" Type="Self.Arkadaslik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Arkadaslik">
+              <PropertyRef Name="Kullanici1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Begeni_Gonderi">
+          <End Role="Gonderi" Type="Self.Gonderi" Multiplicity="1" />
+          <End Role="Begeni" Type="Self.Begeni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gonderi">
+              <PropertyRef Name="GonderiID" />
+            </Principal>
+            <Dependent Role="Begeni">
+              <PropertyRef Name="GonderiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Begeni_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Begeni" Type="Self.Begeni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Begeni">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gonderi_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Gonderi" Type="Self.Gonderi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Gonderi">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gonderi_Medya">
+          <End Role="Medya" Type="Self.Medya" Multiplicity="0..1" />
+          <End Role="Gonderi" Type="Self.Gonderi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medya">
+              <PropertyRef Name="MedyaID" />
+            </Principal>
+            <Dependent Role="Gonderi">
+              <PropertyRef Name="MedyaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanici_Cinsiyet">
+          <End Role="Cinsiyet" Type="Self.Cinsiyet" Multiplicity="0..1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="CinsiyetID" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="CinsiyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Gonderi">
+          <End Role="Gonderi" Type="Self.Gonderi" Multiplicity="1" />
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gonderi">
+              <PropertyRef Name="GonderiID" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="GonderiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="oylesineModelStoreContainer">
+          <EntitySet Name="Arkadaslik" EntityType="Self.Arkadaslik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Begeni" EntityType="Self.Begeni" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cinsiyet" EntityType="Self.Cinsiyet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gonderi" EntityType="Self.Gonderi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medya" EntityType="Self.Medya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yorum" EntityType="Self.Yorum" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Arkadaslik_Kullanici" Association="Self.FK_Arkadaslik_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Arkadaslik" EntitySet="Arkadaslik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arkadaslik_Kullanici1" Association="Self.FK_Arkadaslik_Kullanici1">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Arkadaslik" EntitySet="Arkadaslik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Begeni_Gonderi" Association="Self.FK_Begeni_Gonderi">
+            <End Role="Gonderi" EntitySet="Gonderi" />
+            <End Role="Begeni" EntitySet="Begeni" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Begeni_Kullanici" Association="Self.FK_Begeni_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Begeni" EntitySet="Begeni" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gonderi_Kullanici" Association="Self.FK_Gonderi_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Gonderi" EntitySet="Gonderi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gonderi_Medya" Association="Self.FK_Gonderi_Medya">
+            <End Role="Medya" EntitySet="Medya" />
+            <End Role="Gonderi" EntitySet="Gonderi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanici_Cinsiyet" Association="Self.FK_Kullanici_Cinsiyet">
+            <End Role="Cinsiyet" EntitySet="Cinsiyet" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Gonderi" Association="Self.FK_Yorum_Gonderi">
+            <End Role="Gonderi" EntitySet="Gonderi" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Kullanici" Association="Self.FK_Yorum_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="oylesineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Arkadaslik">
+          <Key>
+            <PropertyRef Name="ArkadaslikID" />
+          </Key>
+          <Property Name="ArkadaslikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kullanici1ID" Type="Int32" Nullable="false" />
+          <Property Name="Kullanici2ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Arkadaslik_Kullanici" FromRole="Arkadaslik" ToRole="Kullanici" />
+          <NavigationProperty Name="Kullanici1" Relationship="Self.FK_Arkadaslik_Kullanici1" FromRole="Arkadaslik" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="Begeni">
+          <Key>
+            <PropertyRef Name="BegeniID" />
+          </Key>
+          <Property Name="BegeniID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="GonderiID" Type="Int32" Nullable="false" />
+          <Property Name="Begeni1" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Gonderi" Relationship="Self.FK_Begeni_Gonderi" FromRole="Begeni" ToRole="Gonderi" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Begeni_Kullanici" FromRole="Begeni" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="Cinsiyet">
+          <Key>
+            <PropertyRef Name="CinsiyetID" />
+          </Key>
+          <Property Name="CinsiyetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cinsiyet1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Kullanicis" Relationship="Self.FK_Kullanici_Cinsiyet" FromRole="Cinsiyet" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="Gonderi">
+          <Key>
+            <PropertyRef Name="GonderiID" />
+          </Key>
+          <Property Name="GonderiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="Icerik" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MedyaID" Type="Int32" />
+          <Property Name="GonderiTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Begenis" Relationship="Self.FK_Begeni_Gonderi" FromRole="Gonderi" ToRole="Begeni" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Gonderi_Kullanici" FromRole="Gonderi" ToRole="Kullanici" />
+          <NavigationProperty Name="Medya" Relationship="Self.FK_Gonderi_Medya" FromRole="Gonderi" ToRole="Medya" />
+          <NavigationProperty Name="Yorums" Relationship="Self.FK_Yorum_Gonderi" FromRole="Gonderi" ToRole="Yorum" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Parola" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fotograf" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Telefon" Type="Int32" />
+          <Property Name="CinsiyetID" Type="Int32" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Arkadasliks" Relationship="Self.FK_Arkadaslik_Kullanici" FromRole="Kullanici" ToRole="Arkadaslik" />
+          <NavigationProperty Name="Arkadasliks1" Relationship="Self.FK_Arkadaslik_Kullanici1" FromRole="Kullanici" ToRole="Arkadaslik" />
+          <NavigationProperty Name="Begenis" Relationship="Self.FK_Begeni_Kullanici" FromRole="Kullanici" ToRole="Begeni" />
+          <NavigationProperty Name="Cinsiyet" Relationship="Self.FK_Kullanici_Cinsiyet" FromRole="Kullanici" ToRole="Cinsiyet" />
+          <NavigationProperty Name="Gonderis" Relationship="Self.FK_Gonderi_Kullanici" FromRole="Kullanici" ToRole="Gonderi" />
+          <NavigationProperty Name="Yorums" Relationship="Self.FK_Yorum_Kullanici" FromRole="Kullanici" ToRole="Yorum" />
+        </EntityType>
+        <EntityType Name="Medya">
+          <Key>
+            <PropertyRef Name="MedyaID" />
+          </Key>
+          <Property Name="MedyaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Gonderis" Relationship="Self.FK_Gonderi_Medya" FromRole="Medya" ToRole="Gonderi" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="YorumID" />
+          </Key>
+          <Property Name="YorumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GonderiID" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="Yorum1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gonderi" Relationship="Self.FK_Yorum_Gonderi" FromRole="Yorum" ToRole="Gonderi" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Yorum_Kullanici" FromRole="Yorum" ToRole="Kullanici" />
+        </EntityType>
+        <Association Name="FK_Arkadaslik_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Arkadaslik" Type="Self.Arkadaslik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Arkadaslik">
+              <PropertyRef Name="Kullanici2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arkadaslik_Kullanici1">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Arkadaslik" Type="Self.Arkadaslik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Arkadaslik">
+              <PropertyRef Name="Kullanici1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Begeni_Gonderi">
+          <End Role="Gonderi" Type="Self.Gonderi" Multiplicity="1" />
+          <End Role="Begeni" Type="Self.Begeni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gonderi">
+              <PropertyRef Name="GonderiID" />
+            </Principal>
+            <Dependent Role="Begeni">
+              <PropertyRef Name="GonderiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Begeni_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Begeni" Type="Self.Begeni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Begeni">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanici_Cinsiyet">
+          <End Role="Cinsiyet" Type="Self.Cinsiyet" Multiplicity="0..1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="CinsiyetID" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="CinsiyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gonderi_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Gonderi" Type="Self.Gonderi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Gonderi">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gonderi_Medya">
+          <End Role="Medya" Type="Self.Medya" Multiplicity="0..1" />
+          <End Role="Gonderi" Type="Self.Gonderi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medya">
+              <PropertyRef Name="MedyaID" />
+            </Principal>
+            <Dependent Role="Gonderi">
+              <PropertyRef Name="MedyaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Gonderi">
+          <End Role="Gonderi" Type="Self.Gonderi" Multiplicity="1" />
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gonderi">
+              <PropertyRef Name="GonderiID" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="GonderiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="KullaniciID" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="oylesineEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arkadasliks" EntityType="Self.Arkadaslik" />
+          <EntitySet Name="Begenis" EntityType="Self.Begeni" />
+          <EntitySet Name="Cinsiyets" EntityType="Self.Cinsiyet" />
+          <EntitySet Name="Gonderis" EntityType="Self.Gonderi" />
+          <EntitySet Name="Kullanicis" EntityType="Self.Kullanici" />
+          <EntitySet Name="Medyas" EntityType="Self.Medya" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Yorums" EntityType="Self.Yorum" />
+          <AssociationSet Name="FK_Arkadaslik_Kullanici" Association="Self.FK_Arkadaslik_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanicis" />
+            <End Role="Arkadaslik" EntitySet="Arkadasliks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arkadaslik_Kullanici1" Association="Self.FK_Arkadaslik_Kullanici1">
+            <End Role="Kullanici" EntitySet="Kullanicis" />
+            <End Role="Arkadaslik" EntitySet="Arkadasliks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Begeni_Gonderi" Association="Self.FK_Begeni_Gonderi">
+            <End Role="Gonderi" EntitySet="Gonderis" />
+            <End Role="Begeni" EntitySet="Begenis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Begeni_Kullanici" Association="Self.FK_Begeni_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanicis" />
+            <End Role="Begeni" EntitySet="Begenis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanici_Cinsiyet" Association="Self.FK_Kullanici_Cinsiyet">
+            <End Role="Cinsiyet" EntitySet="Cinsiyets" />
+            <End Role="Kullanici" EntitySet="Kullanicis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gonderi_Kullanici" Association="Self.FK_Gonderi_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanicis" />
+            <End Role="Gonderi" EntitySet="Gonderis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gonderi_Medya" Association="Self.FK_Gonderi_Medya">
+            <End Role="Medya" EntitySet="Medyas" />
+            <End Role="Gonderi" EntitySet="Gonderis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Gonderi" Association="Self.FK_Yorum_Gonderi">
+            <End Role="Gonderi" EntitySet="Gonderis" />
+            <End Role="Yorum" EntitySet="Yorums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Kullanici" Association="Self.FK_Yorum_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanicis" />
+            <End Role="Yorum" EntitySet="Yorums" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="oylesineModelStoreContainer" CdmEntityContainer="oylesineEntities">
+          <EntitySetMapping Name="Arkadasliks">
+            <EntityTypeMapping TypeName="oylesineModel.Arkadaslik">
+              <MappingFragment StoreEntitySet="Arkadaslik">
+                <ScalarProperty Name="ArkadaslikID" ColumnName="ArkadaslikID" />
+                <ScalarProperty Name="Kullanici1ID" ColumnName="Kullanici1ID" />
+                <ScalarProperty Name="Kullanici2ID" ColumnName="Kullanici2ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Begenis">
+            <EntityTypeMapping TypeName="oylesineModel.Begeni">
+              <MappingFragment StoreEntitySet="Begeni">
+                <ScalarProperty Name="BegeniID" ColumnName="BegeniID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="GonderiID" ColumnName="GonderiID" />
+                <ScalarProperty Name="Begeni1" ColumnName="Begeni" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cinsiyets">
+            <EntityTypeMapping TypeName="oylesineModel.Cinsiyet">
+              <MappingFragment StoreEntitySet="Cinsiyet">
+                <ScalarProperty Name="CinsiyetID" ColumnName="CinsiyetID" />
+                <ScalarProperty Name="Cinsiyet1" ColumnName="Cinsiyet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gonderis">
+            <EntityTypeMapping TypeName="oylesineModel.Gonderi">
+              <MappingFragment StoreEntitySet="Gonderi">
+                <ScalarProperty Name="GonderiID" ColumnName="GonderiID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="MedyaID" ColumnName="MedyaID" />
+                <ScalarProperty Name="GonderiTarihi" ColumnName="GonderiTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanicis">
+            <EntityTypeMapping TypeName="oylesineModel.Kullanici">
+              <MappingFragment StoreEntitySet="Kullanici">
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+                <ScalarProperty Name="Fotograf" ColumnName="Fotograf" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="CinsiyetID" ColumnName="CinsiyetID" />
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medyas">
+            <EntityTypeMapping TypeName="oylesineModel.Medya">
+              <MappingFragment StoreEntitySet="Medya">
+                <ScalarProperty Name="MedyaID" ColumnName="MedyaID" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="oylesineModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yorums">
+            <EntityTypeMapping TypeName="oylesineModel.Yorum">
+              <MappingFragment StoreEntitySet="Yorum">
+                <ScalarProperty Name="YorumID" ColumnName="YorumID" />
+                <ScalarProperty Name="GonderiID" ColumnName="GonderiID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="Yorum1" ColumnName="Yorum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

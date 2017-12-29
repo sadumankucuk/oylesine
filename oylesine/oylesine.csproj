@@ -47,9 +47,11 @@
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -87,6 +89,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -157,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -197,6 +199,45 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Arkadaslik.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Begeni.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cinsiyet.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gonderi.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Kullanici.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Medya.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oylesine.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>oylesine.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oylesine.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oylesine.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>oylesine.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Yorum.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +247,16 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\oylesine.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>oylesine.edmx</DependentUpon>
+      <LastGenOutput>oylesine.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\oylesine.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>oylesine.edmx</DependentUpon>
+      <LastGenOutput>oylesine.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -229,6 +280,13 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\oylesine.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>oylesine.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\oylesine.edmx.diagram">
+      <DependentUpon>oylesine.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -202,6 +202,7 @@
     <Compile Include="Models\Arkadaslik.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BegeniIstek.cs" />
     <Compile Include="Models\Begeniler.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>

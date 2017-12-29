@@ -1,0 +1,137 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>oylesine</title>
+    <link href="~/Content/Login/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/Login/css/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/Login/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/Login/css/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Content/Login/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/Login/css/all.css" rel="stylesheet" />
+    <link href="~/Content/Login/css/select2.min.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/Login/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="~/Content/Login/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/Login/css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-dark">
+
+    <div class="container">
+
+        <div class="card card-login mt-5" style=" width: 600px; margin-left: auto; margin-right: auto ">
+            <div class="card-header">
+                Kayıt Ol
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="isim">İsim : </label>
+                                <input type="text" class="form-control" name="isim" id="isim" aria-describedby="nameHelp" placeholder="İsminizi girin">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="soyisim">Soyisim</label>
+                                <input type="text" class="form-control" id="soyisim" name="soyisim" aria-describedby="nameHelp" placeholder="Soyisminizi girin">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="kullaniciAdi">Kullanıcı Adı : </label>
+                                <input type="text" class="form-control" name="kullaniciAdi" id="kullaniciAdi" aria-describedby="nameHelp" placeholder="Kullanıcı adınızı girin">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ePosta">Eposta adresi : </label>
+                                <input type="email" class="form-control" id="ePosta" name="ePosta" aria-describedby="emailHelp" placeholder="Eposta adresinizi girin">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="fotograf">Profil resmi : </label>
+                            <input type="file" name="fotograf" id="fotograf" value="" accept=".jpg,.png,.gif,.JPEG,.jpeg" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label>Doğum tarihi (Gün Ay Yıl) : </label>                                
+                            </div>
+                            <div class="col-md-1">
+                                <input type="text" class="form-control" name="tarihGun" id="tarihGun" aria-describedby="nameHelp" placeholder="">
+                            </div>
+                            <div class="col-md-1">
+                                <input type="text" class="form-control" name="tarihAy" id="tarihAy" aria-describedby="nameHelp" placeholder="">
+                            </div>
+                            <div class="col-md-1">
+                                <input type="text" class="form-control" name="tarihYil" id="tarihYil" aria-describedby="nameHelp" placeholder="">
+                            </div>
+                                
+                         
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="parola">Parola</label>
+                                <input type="password" class="form-control" id="parola" name="parola" placeholder="Parolanızı girin">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="parolaDogrulama">Parolanızı girin : </label>
+                                <input type="password" class="form-control" id="parolaDogrulama" name="parolaDogrulama" placeholder="Parolanızı doğrulayın">
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary btn-block" href="#">Kayıt Ol</a>
+                </form>
+                <div class="text-center">
+                    <a class="d-block small mt-3" href="~/Uye/Login">Giriş Yap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/Login/js/jquery.min.js"></script>
+    <script src="~/Content/Login/js/popper.min.js"></script>
+    <script src="~/Content/Login/js/bootstrap.min.js"></script>
+    <script src="~/Content/Login/js/jquery-ui.min.js"></script>
+    <script src="~/Content/Login/js/bootstrap-timepicker.min.js"></script>
+    <script src="~/Content/Login/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/Login/js/daterangepicker.js"></script>
+    <script src="~/Content/Login/js/icheck.min.js"></script>
+    <script src="~/Content/Login/js/jquery.inputmask.date.extensions.js"></script>
+    <script src="~/Content/Login/js/jquery.inputmask.js"></script>
+    <script src="~/Content/Login/js/jquery.inputmask.extensions.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
+
+</body>
+
+</html>

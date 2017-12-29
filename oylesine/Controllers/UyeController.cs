@@ -18,5 +18,13 @@ namespace oylesine.Controllers
         {
             return View();
         }
+        public ActionResult Register()
+        {
+            return View();
+        }
+        public ActionResult Profil()
+        {
+            return View();
+        }
     }
 }

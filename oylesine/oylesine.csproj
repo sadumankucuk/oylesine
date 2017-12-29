@@ -160,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Response\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -211,6 +212,9 @@
     <Compile Include="Models\Gonderiler.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Kontrol.cs" />
+    <Compile Include="Models\Request\GonderiIstek.cs" />
+    <Compile Include="Models\Request\KullaniciIstek.cs" />
     <Compile Include="Models\Kullanicilar.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>

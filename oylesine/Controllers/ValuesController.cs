@@ -137,6 +137,8 @@ namespace oylesine.Controllers
                     //todo begeni sil
                     db.SaveChanges();
                     k.basari = true;
+
+
                 }
             }
             catch

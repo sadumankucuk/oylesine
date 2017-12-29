@@ -1,4 +1,5 @@
-﻿using System;
+﻿using oylesine.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,42 +11,42 @@ namespace oylesine.Controllers
     
     public class ValuesController : ApiController
     {
-        //oylesineEntities db = new oylesineEntities();
-        //Kullanici kullanici = new Kullanici();
+        oylesineEntities db = new oylesineEntities();
+        Kullanicilar kullanici = new Kullanicilar();
 
-     
 
-        //[HttpGet]
-        //public bool KullaniciEkle(string ad, string soyad, string kullaniciAdi, string email, string parola, string fotograf, DateTime dogumTarihi, int telefon, int cinsiyetID, DateTime kayitTarihi)
-        //{
-        //    bool control = true;
-        //    try
-        //    {
-        //        using (db = new oylesineEntities())
-        //        {
-        //            db.Kullanicis.Add(new Kullanici()
-        //            {
-        //                Ad = ad,
-        //                Soyad = soyad,
-        //                KullaniciAdi = kullaniciAdi,
-        //                Email = email,
-        //                Parola = parola,
-        //                Fotograf = fotograf,
-        //                DogumTarihi = dogumTarihi,
-        //                Telefon = telefon,
-        //                CinsiyetID = cinsiyetID,
-        //                KayitTarihi = kayitTarihi
-        //            });
 
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        control = false;
-        //        throw;
-        //    }
-        //    return control;
-        //}
+        [HttpGet]
+        public bool KullaniciEkle(string ad, string soyad, string kullaniciAdi, string email, string parola, string fotograf, string dogumTarihi, int telefon, int cinsiyetID, string kayitTarihi)
+        {
+            bool control = true;
+            try
+            {
+                using (db = new oylesineEntities())
+                {
+                    db.Kullanicilars.Add(new Kullanicilar()
+                    {
+                        Ad = ad,
+                        Soyad = soyad,
+                        KullaniciAdi = kullaniciAdi,
+                        Email = email,
+                        Parola = parola,
+                        Fotograf = fotograf,
+                        DogumTarihi = Convert.ToDateTime(dogumTarihi),
+                        Telefon = telefon,
+                        CinsiyetID = cinsiyetID,
+                        KayitTarihi = Convert.ToDateTime(kayitTarihi)
+                    });
+
+                }
+            }
+            catch (Exception)
+            {
+                control = false;
+                throw;
+            }
+            return control;
+        }
 
         //GET api/values
         public IEnumerable<string> Get()

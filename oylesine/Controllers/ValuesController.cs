@@ -12,12 +12,6 @@ namespace oylesine.Controllers
     public class ValuesController : ApiController
     {
         oylesineEntities db = new oylesineEntities();
-        Kullanicilar kullanici = new Kullanicilar();
-
-
-        
-
-
         [HttpPost]
         public Kontrol KullaniciEkle([FromBody]KullaniciIstek k)
         {
@@ -127,6 +121,18 @@ namespace oylesine.Controllers
             }
             return k;
         }
+        //[HttpPost]
+        //public GonderiSil([FromBody]GonderiSilIstek gs)
+        //{
+        //    try
+        //    {
+
+        //    }
+        //    catch 
+        //    {
+
+        //    }
+        //}
         //GET api/values
         public IEnumerable<string> Get()
         {

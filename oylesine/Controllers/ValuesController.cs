@@ -17,6 +17,7 @@ namespace oylesine.Controllers
 
 
 
+
         [HttpPost]
         public Kontrol KullaniciEkle([FromBody]KullaniciIstek k)
         {

@@ -12,11 +12,6 @@ namespace oylesine.Controllers
     public class ValuesController : ApiController
     {
         oylesineEntities db = new oylesineEntities();
-        Kullanicilar kullanici = new Kullanicilar();
-
-
-
-
         [HttpPost]
         public Kontrol KullaniciEkle([FromBody]KullaniciIstek k)
         {
@@ -60,7 +55,7 @@ namespace oylesine.Controllers
                 {
                     db.Gonderilers.Add(new Gonderiler()
                     {
-                        KullaniciID = g.kullaniciID,
+                        KullaniciID =g.kullaniciID,
                         Icerik = g.icerik,
                         MedyaID = g.medyaID,
                         GonderiTarihi=DateTime.Now
@@ -101,6 +96,47 @@ namespace oylesine.Controllers
                 Control.basari = false;
             }
             return Control;
+        }
+        [HttpPost]
+        public Kontrol Begen([FromBody]BegeniIstek b)
+        {
+            Kontrol k = new Kontrol();
+            try
+            {
+                using (db=new oylesineEntities())
+                {
+                    db.Begenilers.Add(new Begeniler()
+                    {
+                        KullaniciID=b.kullaniciID,
+                        GonderiID=b.gonderiID,
+                        Begeni=b.begeni
+                    });
+                    db.SaveChanges();
+                    k.basari = true;
+                }
+            }
+            catch 
+            {
+                k.basari = false;
+            }
+            return k;
+        }
+        //[HttpPost]
+        //public GonderiSil([FromBody]GonderiSilIstek gs)
+        //{
+        //    try
+        //    {
+
+        //    }
+        //    catch 
+        //    {
+
+        //    }
+        //}
+        //GET api/values
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "value1", "value2" };             
         }
 
         [HttpPost]

@@ -18,6 +18,7 @@ namespace oylesine.Models
         public int GonderiID { get; set; }
         public int KullaniciID { get; set; }
         public string Yorum { get; set; }
+        public System.DateTime YorumTarihi { get; set; }
     
         public virtual Gonderiler Gonderiler { get; set; }
         public virtual Kullanicilar Kullanicilar { get; set; }

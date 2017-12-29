@@ -218,6 +218,7 @@
     <Compile Include="Models\Kullanicilar.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\KullaniciSilIstek.cs" />
     <Compile Include="Models\Medyalar.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>

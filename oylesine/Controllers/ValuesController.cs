@@ -1,4 +1,5 @@
-﻿using System;
+﻿using oylesine.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,12 +8,16 @@ using System.Web.Http;
 
 namespace oylesine.Controllers
 {
+    
     public class ValuesController : ApiController
     {
+        oylesineEntities db = new oylesineEntities();
         // GET api/values
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
+
+                
         }
 
         // GET api/values/5

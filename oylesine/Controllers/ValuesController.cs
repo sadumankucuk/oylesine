@@ -1,5 +1,4 @@
 ﻿using oylesine.Models;
-using oylesine.Models.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +62,8 @@ namespace oylesine.Controllers
                         KullaniciID = g.kullaniciID,
                         Icerik = g.icerik,
                         MedyaID = g.medyaID,
-                        GonderiTarihi = DateTime.Now
+                        GonderiTarihi=DateTime.Now
+
                     });
                     db.SaveChanges();
                     k.basari = true;

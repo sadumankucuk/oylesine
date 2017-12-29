@@ -1,5 +1,4 @@
-﻿using oylesine.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,10 +10,32 @@ namespace oylesine.Controllers
     
     public class ValuesController : ApiController
     {
-        oylesineEntities db = new oylesineEntities();
+        //oylesineEntities db = new oylesineEntities();
+        //Kullanici kullanici = new Kullanici();
 
+        //public Kullanici KullaniciEkle(string Ad,string Soyad, string KullaniciAdi, string email, string parola, string fotoğraf, string )
+        //{
+        //    try
+        //    {
+        //        using (db=new oylesineEntities())
+        //        {
+        //            db.Kullanicis.Add(new Kullanici()
+        //            {
+        //                Ad=Ad,
+        //                Soyad=Soyad,
+        //                KullaniciAdi=KullaniciAdi,
+        //                Parola=parola,
+        //                Mail=email
+        //            });
 
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
 
+        //        throw;
+        //    }
+        //}
 
         // GET api/values
         public IEnumerable<string> Get()

@@ -238,6 +238,7 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\YorumIstek.cs" />
     <Compile Include="Models\Yorumlar.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>

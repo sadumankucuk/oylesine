@@ -160,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Response\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -201,8 +200,35 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Kontrol.cs" />
-    <Compile Include="Models\Request\GonderiIstek.cs" />
-    <Compile Include="Models\Request\KullaniciIstek.cs" />
+    <Compile Include="Models\GonderiIstek.cs" />
+    <Compile Include="Models\KullaniciIstek.cs" />
+    <Compile Include="Models\Kullanicilar.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Medyalar.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oylesine.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>oylesine.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oylesine.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\oylesine.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>oylesine.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Yorumlar.cs">
+      <DependentUpon>oylesine.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -247,6 +247,7 @@
     <Compile Include="Models\Yorumlar.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\YorumSilIstek.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

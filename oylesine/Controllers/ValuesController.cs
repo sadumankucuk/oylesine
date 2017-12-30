@@ -123,19 +123,56 @@ namespace oylesine.Controllers
             }
             return k;
         }
+        [HttpPost]
+        public Kontrol GonderiSil([FromBody]GonderiSilIstek gs)
+        {
+            Kontrol k = new Kontrol();
+            try
+            {
+                using (db=new oylesineEntities())
+                {
+                    Gonderiler gonderi= db.Gonderilers.Find(gs.gonderiID);
+                    YorumSilIstek yorum = new YorumSilIstek();
+                    db.Gonderilers.Remove(gonderi);
+                    YorumSil(yorum);
+                    //todo begeni sil
+                    db.SaveChanges();
+                    k.basari = true;
 
-        //[HttpPost]
-        //public GonderiSil([FromBody]GonderiSilIstek gs)
-        //{
-        //    try
-        //    {
 
-        //    }
-        //    catch 
-        //    {
-
-        //    }
-        //}
+                }
+            }
+            catch
+            {
+                k.basari = false;
+            }
+            return k;
+        }
+        [HttpPost]
+        public Kontrol YorumSil([FromBody]YorumSilIstek y)
+        {
+            Kontrol k = new Kontrol();
+            try
+            {
+                using (db=new oylesineEntities())
+                {
+                    Yorumlar yorum = db.Yorumlars.Find(y.yorumID);
+                    db.Yorumlars.Remove(yorum);
+                    db.SaveChanges();
+                    k.basari = true;
+                }
+            }
+            catch 
+            {
+                k.basari = false;
+            }
+            return k;
+        }
+        //GET api/values
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "value1", "value2" };             
+        }
 
         [HttpPost]
         public Kontrol KullaniciSil([FromBody]KullaniciSilIstek sil)

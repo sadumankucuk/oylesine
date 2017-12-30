@@ -32,3 +32,30 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+        $(function () {
+            $("#kayit").click(function () {
+                console.log("tıklandı");
+                var isim = $("#isim").val();
+                var soyisim = $("#soyisim").val()
+                var kullaniciAdi = $("#kullaniciAdi").val()
+                var ePosta = $("#ePosta").val()
+                var tarihGun = $("#tarihGun").val()
+                var tarihAy = $("#tarihAy").val()
+                var tarihYil = $("#tarihYil").val()
+                var parola = $("#parola").val()
+
+                var parameters = {
+                    ad:isim,
+                    soyad:soyisim,
+                    kullaniciAdi: kullaniciAdi,
+                    email: ePosta,
+                    parola: parola
+                }
+
+                $.post("/api/Values/KullaniciEkle", parameters, function (result) {
+                    console.log(result.basari);
+                });
+            });
+        });
+</script>

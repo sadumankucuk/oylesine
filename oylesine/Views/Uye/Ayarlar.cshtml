@@ -39,9 +39,53 @@
             </div>
         </div>
         <div class="col-md-offset-4 col-md-8">
-            
-                <button type="submit" class="btn  btn-primary btn-info pull-right">Profili Güncelle</button><br /><br /><br /><br />
+            <a class="btn  btn-primary btn-info pull-right" href="#" id="guncelle">Profili Güncelle</a><br /><br /><br /><br />
        
         </div>
     </div>
 </div>
+
+<script src="~/Content/Login/js/jquery.min.js"></script>
+<script src="~/Content/Login/js/popper.min.js"></script>
+<script src="~/Content/Login/js/bootstrap.min.js"></script>
+<script src="~/Content/Login/js/jquery-ui.min.js"></script>
+<script src="~/Content/Login/js/bootstrap-timepicker.min.js"></script>
+<script src="~/Content/Login/js/bootstrap-datepicker.min.js"></script>
+<script src="~/Content/Login/js/daterangepicker.js"></script>
+<script src="~/Content/Login/js/icheck.min.js"></script>
+<script src="~/Content/Login/js/jquery.inputmask.date.extensions.js"></script>
+<script src="~/Content/Login/js/jquery.inputmask.js"></script>
+<script src="~/Content/Login/js/jquery.inputmask.extensions.js"></script>
+
+
+<script type="text/javascript">
+        $(function () {
+            $("#guncelle").click(function () {
+                console.log("tıklandı");
+                var kullaniciAdi = $("#kullaniciAdi").val();
+                var ePosta = $("#ePosta").val()
+                var parola = $("#parola").val()
+                var parolaDogrulama = $("#parolaDogrulama").val()
+                if (parola == parolaDogrulama)
+                {
+                    var parameters = {
+
+                        kullaniciAdi: kullaniciAdi,
+                        email: ePosta,
+                        parola: parola
+                    }
+                    console.log(parameters);
+                    $.post("/api/Values/KullaniciGuncelle", parameters, function (result) {
+                        console.log(result);
+                        window.location.href = "/Uye/Profil";
+                    });
+
+                }
+                else
+                {
+                    alert("parola dogrulanamadı");
+                }
+                
+            });
+        });
+</script>

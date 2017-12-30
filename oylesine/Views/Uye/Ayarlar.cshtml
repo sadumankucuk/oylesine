@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Ayarlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ayarlar</h2>
+<div class="container">
+    <div class="row col-md-8">
+        <div class="form-group">
+            <div class="form-row">
+                <label for="kullaniciAdi">Kullanıcı Adı : </label>
+                <input type="text" class="form-control" name="kullaniciAdi" id="kullaniciAdi" aria-describedby="nameHelp" placeholder="">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <label for="ePosta">Eposta Adresi : </label>
+                <input type="text" class="form-control" name="ePosta" id="ePosta" aria-describedby="nameHelp" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <label for="parola">Parola</label>
+                <input type="password" class="form-control" id="parola" name="parola" placeholder="Parolanızı girin">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <label for="parolaDogrulama">Parolanızı tekrar girin : </label>
+                <input type="password" class="form-control" id="parolaDogrulama" name="parolaDogrulama" placeholder="Parolanızı doğrulayın">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <label for="fotograf">Profil resmi : </label>
+                <input type="file" name="fotograf" id="fotograf" value="" accept=".jpg,.png,.gif,.JPEG,.jpeg" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-offset-4 col-md-8">
+            
+                <button type="submit" class="btn  btn-primary btn-info pull-right">Profili Güncelle</button><br /><br /><br /><br />
+       
+        </div>
+    </div>
+</div>

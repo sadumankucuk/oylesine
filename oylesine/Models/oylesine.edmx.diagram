@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ece2779567fc459f901dfe1f7245f3b5" Name="Diagram1">
+      <Diagram DiagramId="4d6bb6b1d5be4ef6aface3d27362e168" Name="Diagram1">
         <EntityTypeShape EntityType="oylesineModel.Arkadaslik" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="oylesineModel.Begeniler" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="oylesineModel.Cinsiyetler" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="oylesineModel.Kullanicilar" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="oylesineModel.Medyalar" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="oylesineModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="oylesineModel.Yorumlar" Width="1.5" PointX="10.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="oylesineModel.Yorumlar" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="oylesineModel.FK_Arkadaslik_Kullanici" ManuallyRouted="false" />
         <AssociationConnector Association="oylesineModel.FK_Arkadaslik_Kullanici1" ManuallyRouted="false" />
         <AssociationConnector Association="oylesineModel.FK_Begeni_Gonderi" ManuallyRouted="false" />

@@ -80,6 +80,7 @@
           <Property Name="GonderiID" Type="int" Nullable="false" />
           <Property Name="KullaniciID" Type="int" Nullable="false" />
           <Property Name="Yorum" Type="nvarchar" MaxLength="100" />
+          <Property Name="YorumTarihi" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_Arkadaslik_Kullanici">
           <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
@@ -331,6 +332,7 @@
           <Property Name="GonderiID" Type="Int32" Nullable="false" />
           <Property Name="KullaniciID" Type="Int32" Nullable="false" />
           <Property Name="Yorum" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="YorumTarihi" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Gonderiler" Relationship="Self.FK_Yorum_Gonderi" FromRole="Yorumlar" ToRole="Gonderiler" />
           <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Yorum_Kullanici" FromRole="Yorumlar" ToRole="Kullanicilar" />
         </EntityType>
@@ -575,6 +577,7 @@
                 <ScalarProperty Name="GonderiID" ColumnName="GonderiID" />
                 <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
                 <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+                <ScalarProperty Name="YorumTarihi" ColumnName="YorumTarihi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

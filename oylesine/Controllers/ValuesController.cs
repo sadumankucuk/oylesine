@@ -12,11 +12,6 @@ namespace oylesine.Controllers
     public class ValuesController : ApiController
     {
         oylesineEntities db = new oylesineEntities();
-        Kullanicilar kullanici = new Kullanicilar();
-
-
-
-
         [HttpPost]
         public Kontrol KullaniciEkle([FromBody]KullaniciIstek k)
         {
@@ -60,7 +55,7 @@ namespace oylesine.Controllers
                 {
                     db.Gonderilers.Add(new Gonderiler()
                     {
-                        KullaniciID = g.kullaniciID,
+                        KullaniciID =g.kullaniciID,
                         Icerik = g.icerik,
                         MedyaID = g.medyaID,
                         GonderiTarihi=DateTime.Now
@@ -78,25 +73,95 @@ namespace oylesine.Controllers
         }
 
         [HttpPost]
-        public bool YorumEkle(int gonderiID, int kullaniciID, string yorum)
+        public Kontrol YorumEkle([FromBody]YorumIstek y)
         {
-            bool Control = true;
+            Kontrol Control = new Kontrol();
             try
             {
-                db.Yorumlars.Add(new Yorumlar()
+                using (db = new oylesineEntities())
                 {
-                    GonderiID = gonderiID,
-                    KullaniciID = kullaniciID,
-                    Yorum = yorum
-                });
-                db.SaveChanges();
-
+                    db.Yorumlars.Add(new Yorumlar()
+                    {
+                        GonderiID = y.gonderiID,
+                        KullaniciID = y.kullaniciID,
+                        Yorum = y.yorum,
+                        YorumTarihi=DateTime.Now
+                    });
+                    db.SaveChanges();
+                    Control.basari = true;
+                }
+                    
             }
             catch (Exception)
             {
-                Control = false;
+                Control.basari = false;
             }
             return Control;
+        }
+
+        [HttpPost]
+        public Kontrol Begen([FromBody]BegeniIstek b)
+        {
+            Kontrol k = new Kontrol();
+            try
+            {
+                using (db=new oylesineEntities())
+                {
+                    db.Begenilers.Add(new Begeniler()
+                    {
+                        KullaniciID=b.kullaniciID,
+                        GonderiID=b.gonderiID,
+                        Begeni=b.begeni
+                    });
+                    db.SaveChanges();
+                    k.basari = true;
+                }
+            }
+            catch 
+            {
+                k.basari = false;
+            }
+            return k;
+        }
+        [HttpPost]
+        public Kontrol GonderiSil([FromBody]GonderiSilIstek gs)
+        {
+            Kontrol k = new Kontrol();
+            try
+            {
+                using (db=new oylesineEntities())
+                {
+                    Gonderiler gonderi= db.Gonderilers.Find(gs.gonderiID);                
+                    db.Gonderilers.Remove(gonderi);
+                    db.SaveChanges();
+                    k.basari = true;
+                }
+            }
+            catch
+            {
+                k.basari = false;
+            }
+            return k;
+        }
+        [HttpPost]
+        public Kontrol YorumSil([FromBody]YorumSilIstek y)
+        {
+            Kontrol k = new Kontrol();
+            try
+            {
+                using (db=new oylesineEntities())
+                {
+                    Yorumlar yorum = db.Yorumlars.Find(y.yorumID);
+                    db.Yorumlars.Remove(yorum);
+                    db.SaveChanges();
+                    k.basari = true;
+                }
+            }
+            catch 
+            {
+                k.basari = false;
+            }
+            return k;
         }
         //GET api/values
         public IEnumerable<string> Get()
@@ -104,25 +169,94 @@ namespace oylesine.Controllers
             return new string[] { "value1", "value2" };             
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        [HttpPost]
+        public Kontrol KullaniciSil([FromBody]KullaniciSilIstek sil)
         {
-            return "value";
+            
+            Kontrol Control = new Kontrol();
+            try
+            {
+                using (db = new oylesineEntities())
+                {
+                    Kullanicilar kullanici = new Kullanicilar();
+                    kullanici = db.Kullanicilars.Find(sil.kullaniciID);
+
+                    db.Kullanicilars.Remove(kullanici);
+                    db.SaveChanges();
+                    Control.basari = true;
+                }
+            }
+            catch (Exception)
+            {
+                Control.basari = false;
+            }
+            return Control;
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public Kontrol BegeniGeriAl([FromBody]BegeniGeriAlIstek b)
         {
+            Kontrol Control = new Kontrol();
+            try
+            {
+                using (db = new oylesineEntities())
+                {
+
+                    Begeniler begeni = new Begeniler();
+                    begeni = db.Begenilers.Find(b.begeniID);
+                    db.Begenilers.Remove(begeni);
+                    db.SaveChanges();
+                    Control.basari = true;
+                }
+            }
+            catch
+            {
+                Control.basari = false;
+            }
+            return Control;
+        }
+        [HttpPost]
+        public List<GonderiGetir> GonderileriGetir([FromBody]GonderiGetirIstek gs)
+        {
+            List<GonderiGetir> gonderiListesi = new List<GonderiGetir>();
+            using (db=new oylesineEntities())
+            {
+                foreach (Arkadaslik a in db.Arkadasliks.Where(x=>x.Kullanici1ID == gs.kullaniciID))
+                {
+                    foreach (Gonderiler g in a.Kullanicilar1.Gonderilers)
+                    {
+                        GonderiGetir gg = new GonderiGetir();
+                        gg.icerik = g.Icerik;
+                       
+                        gonderiListesi.Add(gg);
+                    }
+                }
+            }
+            return gonderiListesi.OrderByDescending(x => x.gonderiID).ToList();
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPost]
+        public Kullanici kullaniciGiris([FromBody]GirisIstek giris)
         {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            using (db=new oylesineEntities())
+            {
+                Kullanici k = new Kullanici();
+                if(db.Kullanicilars.Any(x=> x.Email==giris.email && x.Parola==giris.parola))
+                {
+                    Kullanicilar kullanici = db.Kullanicilars.FirstOrDefault(x => x.Email == giris.email && x.Parola == giris.parola);
+                    k.kullaniciID = kullanici.KullaniciID;
+                    k.Ad = kullanici.Ad;
+                    k.Soyad = kullanici.Soyad;
+                    k.email = kullanici.Email;
+                    k.parola = kullanici.Parola;
+                    k.Fotograf = kullanici.Fotograf;
+                    k.dogumTarihi = Convert.ToDateTime(kullanici.DogumTarihi);
+                    k.telefon = kullanici.Telefon;
+                    k.cinsiyetID = (int)kullanici.CinsiyetID;
+                    k.kayitTarihi = Convert.ToDateTime(kullanici.KayitTarihi);
+                }
+                return k;
+            }        
         }
     }
 }

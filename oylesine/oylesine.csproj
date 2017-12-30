@@ -203,21 +203,29 @@
     <Compile Include="Models\Arkadaslik.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BegeniGeriAlIstek.cs" />
+    <Compile Include="Models\BegeniIstek.cs" />
     <Compile Include="Models\Begeniler.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cinsiyetler.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GirisIstek.cs" />
+    <Compile Include="Models\GonderiGetir.cs" />
+    <Compile Include="Models\GonderiGetirIstek.cs" />
     <Compile Include="Models\Gonderiler.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GonderiSilIstek.cs" />
     <Compile Include="Models\Kontrol.cs" />
     <Compile Include="Models\GonderiIstek.cs" />
+    <Compile Include="Models\Kullanici.cs" />
     <Compile Include="Models\KullaniciIstek.cs" />
     <Compile Include="Models\Kullanicilar.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\KullaniciSilIstek.cs" />
     <Compile Include="Models\Medyalar.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
@@ -239,9 +247,11 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\YorumIstek.cs" />
     <Compile Include="Models\Yorumlar.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\YorumSilIstek.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -380,13 +390,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\oylesine.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>oylesine.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\oylesine.edmx.diagram">
-      <DependentUpon>oylesine.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
@@ -499,6 +502,13 @@
     <Content Include="Content\bootstrap\nuget\MyGet.ps1" />
     <Content Include="Content\bootstrap\package.json" />
     <Content Include="Content\bootstrap\README.md" />
+    <EntityDeploy Include="Models\oylesine.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>oylesine.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\oylesine.edmx.diagram">
+      <DependentUpon>oylesine.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

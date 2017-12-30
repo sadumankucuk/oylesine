@@ -35,7 +35,6 @@ namespace oylesine.Controllers
                     });
                     db.SaveChanges();
                     control.basari = true;
-
                 }
             }
             catch
@@ -221,18 +220,47 @@ namespace oylesine.Controllers
             List<GonderiGetir> gonderiListesi = new List<GonderiGetir>();
             using (db=new oylesineEntities())
             {
-                foreach (Arkadaslik a in db.Arkadasliks.Where(x=>x.Kullanici1ID == gs.kullaniciID))
+                foreach (Arkadaslik a in db.Arkadasliks.Where(x=>x.Kullanici2ID == gs.kullaniciID || x.Kullanici1ID==gs.kullaniciID))
                 {
                     foreach (Gonderiler g in a.Kullanicilar1.Gonderilers)
                     {
                         GonderiGetir gg = new GonderiGetir();
                         gg.icerik = g.Icerik;
-                       
+                        Kullanicilar k = db.Kullanicilars.First(x => x.KullaniciID == g.KullaniciID);
+                        gg.kullaniciAdi = k.KullaniciAdi;
+                        gg.begenisayisi = db.Begenilers.Count(x => x.GonderiID == g.GonderiID);
+                        gg.yorumsayisi = db.Yorumlars.Count(x => x.GonderiID == g.GonderiID);
+                        gg.fotograf = db.Medyalars.FirstOrDefault(x => x.MedyaID == g.MedyaID).Url;
+                        gg.gonderiTarihi = Convert.ToDateTime(g.GonderiTarihi);
                         gonderiListesi.Add(gg);
                     }
                 }
             }
-            return gonderiListesi.OrderByDescending(x => x.gonderiID).ToList();
+            return gonderiListesi.OrderByDescending(x => x.gonderiTarihi).ToList();
+        }
+        [HttpPost]
+        public List<GonderiGetir> ProfilGonderileriGetir([FromBody]GonderiGetirIstek gs)
+        {
+            List<GonderiGetir> gonderiListesi = new List<GonderiGetir>();
+            using (db = new oylesineEntities())
+            {
+                foreach (Arkadaslik a in db.Arkadasliks.Where(x => x.Kullanici1ID == gs.kullaniciID))
+                {
+                    foreach (Gonderiler g in a.Kullanicilar1.Gonderilers)
+                    {
+                        GonderiGetir gg = new GonderiGetir();
+                        gg.icerik = g.Icerik;
+                        Kullanicilar k = db.Kullanicilars.First(x => x.KullaniciID == g.KullaniciID);
+                        gg.kullaniciAdi = k.KullaniciAdi;
+                        gg.begenisayisi = db.Begenilers.Count(x => x.GonderiID == g.GonderiID);
+                        gg.yorumsayisi = db.Yorumlars.Count(x => x.GonderiID == g.GonderiID);
+                        gg.fotograf = db.Medyalars.FirstOrDefault(x => x.MedyaID == g.MedyaID).Url;
+                        gg.gonderiTarihi = Convert.ToDateTime(g.GonderiTarihi);
+                        gonderiListesi.Add(gg);
+                    }
+                }
+            }
+            return gonderiListesi.OrderByDescending(x => x.gonderiTarihi).ToList();
         }
 
         [HttpPost]
@@ -252,11 +280,29 @@ namespace oylesine.Controllers
                     k.Fotograf = kullanici.Fotograf;
                     k.dogumTarihi = Convert.ToDateTime(kullanici.DogumTarihi);
                     k.telefon = kullanici.Telefon;
-                    k.cinsiyetID = (int)kullanici.CinsiyetID;
+                    k.cinsiyetID = Convert.ToInt32(kullanici.CinsiyetID);
                     k.kayitTarihi = Convert.ToDateTime(kullanici.KayitTarihi);
                 }
                 return k;
             }        
+        }
+        [HttpPost]
+        public void KullaniciGuncelle([FromBody]Kullanici k)
+        {
+            using (db=new oylesineEntities())
+            {
+                Kullanicilar kullanici = db.Kullanicilars.Find(k.kullaniciID);
+                if (k.kullaniciAdi != "")
+                    kullanici.KullaniciAdi = k.kullaniciAdi;
+                if (k.email != " ")
+                    kullanici.Email = k.email;
+                if (k.parola != " ")
+                    kullanici.Parola = k.parola;
+                if(k.Fotograf!=" ")
+                    kullanici.Fotograf = k.Fotograf;
+                db.SaveChanges();
+            }
+
         }
     }
 }

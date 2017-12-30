@@ -8,6 +8,6 @@ namespace oylesine.Models
     public class GonderiGetirIstek
     {
         public int kullaniciID { get; set; }
-       
+      
     }
 }

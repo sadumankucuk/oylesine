@@ -10,5 +10,6 @@ namespace oylesine.Models
         public int gonderiID { get; set; }
         public int kullaniciID { get; set; }
         public string yorum { get; set; }
+        public DateTime yorumTarihi { get; set; }
     }
 }

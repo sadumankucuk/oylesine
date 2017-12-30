@@ -56,7 +56,7 @@ namespace oylesine.Controllers
                     {
                         KullaniciID =g.kullaniciID,
                         Icerik = g.icerik,
-                        MedyaID = g.medyaID,
+                        //MedyaID = g.medyaID,
                         GonderiTarihi=DateTime.Now
 
                     });
@@ -230,7 +230,7 @@ namespace oylesine.Controllers
                         gg.kullaniciAdi = k.KullaniciAdi;
                         gg.begenisayisi = db.Begenilers.Count(x => x.GonderiID == g.GonderiID);
                         gg.yorumsayisi = db.Yorumlars.Count(x => x.GonderiID == g.GonderiID);
-                        gg.fotograf = db.Medyalars.FirstOrDefault(x => x.MedyaID == g.MedyaID).Url;
+                        //gg.fotograf = db.Medyalars.FirstOrDefault(x => x.MedyaID == g.MedyaID).Url;
                         gg.gonderiTarihi = Convert.ToDateTime(g.GonderiTarihi);
                         gonderiListesi.Add(gg);
                     }

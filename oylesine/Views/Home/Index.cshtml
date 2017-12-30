@@ -10,11 +10,11 @@
     
     <div class="row">
         <div class="form-group col-md-8">
-            <br /><br /><textarea class="form-control" rows="4" placeholder="Hadi, bir şeyler yolla..."></textarea><br />
+            <br /><br /><textarea id="icerik" class="form-control" rows="4" placeholder="Hadi, bir şeyler yolla..."></textarea><br />
         </div>
         <div class="form-group">
             <div class="col-md-8">
-                <button type="submit" class="btn  btn-primary btn-info pull-right">Yolla!</button><br /><br /><br /><br />
+                <button id="yolla" type="button" class="btn  btn-primary btn-info pull-right">Yolla!</button><br /><br /><br /><br />
                 <hr />
             </div>
         </div>
@@ -29,6 +29,8 @@
         console.log("icerde");
 
         var params = { kullaniciID: @Session["kullaniciId"] };
+        var icerikk = $("#icerik").val();
+        var datas =  { kullaniciID: @Session["kullaniciId"], Icerik: icerikk} ;
 
         $.ajax({
             url: '/api/Values/GonderileriGetir',
@@ -48,5 +50,21 @@
 
             }
         });
+
+        $("#yolla").click(function(){
+            $.ajax({
+                url: '/api/Values/GonderiEkle',
+                data: datas,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    window.location.href = "/Home/Index";
+                   
+
+
+                }
+            });
+        });
+
     });
 </script>

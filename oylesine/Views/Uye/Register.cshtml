@@ -130,7 +130,7 @@
         $(function () {
             $("#kayit").click(function () {
                 console.log("tıklandı");
-                var isim = $("#isim").val();
+                var isim = $("#isim").val()
                 var soyisim = $("#soyisim").val()
                 var kullaniciAdi = $("#kullaniciAdi").val()
                 var ePosta = $("#ePosta").val()
@@ -138,18 +138,37 @@
                 var tarihAy = $("#tarihAy").val()
                 var tarihYil = $("#tarihYil").val()
                 var parola = $("#parola").val()
+                var paroladogrulama = $("#parolaDogrulama").val()
 
-                var parameters = {
-                    ad:isim,
-                    soyad:soyisim,
-                    kullaniciAdi: kullaniciAdi,
-                    email: ePosta,
-                    parola: parola
+                if (parola == paroladogrulama)
+                {
+                    var parameters = {
+                        ad: isim,
+                        soyad: soyisim,
+                        kullaniciAdi: kullaniciAdi,
+                        email: ePosta,
+                        parola: parola
+                    }
+
+                    $.post("/api/Values/KullaniciEkle", parameters, function (result) {
+                        console.log(result.basari);
+                        if (result.basari == true) {
+                            window.location.href = "/Uye/Login";
+                        }
+                        else
+                        {
+                            alert("Kayıt olunamadı.");
+                        }
+                    });
+                }
+                else
+                {
+                    alert("Papola Dogrulanamadı.");
                 }
 
-                $.post("/api/Values/KullaniciEkle", parameters, function (result) {
-                    console.log(result.basari);
-                });
+               
+                
+                    
             });
         });
     </script>

@@ -264,15 +264,16 @@ namespace oylesine.Controllers
         }
 
         [HttpPost]
-        public Kullanici kullaniciGiris([FromBody]GirisIstek giris)
+        public Kullanici kullaniciGiris([FromBody] GirisIstek giris)
         {
-            using (db=new oylesineEntities())
+            using (db = new oylesineEntities())
             {
                 Kullanici k = new Kullanici();
-                if(db.Kullanicilars.Any(x=> x.Email==giris.email && x.Parola==giris.parola))
+                if (db.Kullanicilars.Any(x => x.Email == giris.email && x.Parola == giris.parola))
                 {
-                    Kullanicilar kullanici = db.Kullanicilars.FirstOrDefault(x => x.Email == giris.email && x.Parola == giris.parola);
+                    Kullanicilar kullanici = db.Kullanicilars.Where(x => x.Email == giris.email && x.Parola == giris.parola).FirstOrDefault();
                     k.kullaniciID = kullanici.KullaniciID;
+                    k.kullaniciAdi = kullanici.KullaniciAdi;
                     k.Ad = kullanici.Ad;
                     k.Soyad = kullanici.Soyad;
                     k.email = kullanici.Email;
@@ -284,7 +285,7 @@ namespace oylesine.Controllers
                     k.kayitTarihi = Convert.ToDateTime(kullanici.KayitTarihi);
                 }
                 return k;
-            }        
+            }
         }
         [HttpPost]
         public void KullaniciGuncelle([FromBody]Kullanici k)

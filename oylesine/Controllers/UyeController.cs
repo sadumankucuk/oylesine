@@ -43,16 +43,30 @@ namespace oylesine.Controllers
             return View();
         }
 
-        public JsonResult SessionRegister(string kullaniciadi, string ad, string soyad, string email, string fotograf, string dogumtarihi)
+        public JsonResult SessionRegister(string kullaniciID, string kullaniciadi, string ad, string soyad, string email, string fotograf, string dogumtarihi)
         {
+            Session["kullaniciId"] = kullaniciID;
             Session["kullaniciadi"] = kullaniciadi;
-            Session["kullaniciısim"] = ad;
+            Session["kullaniciisim"] = ad;
             Session["kullanicisoyisim"] = soyad;
             Session["kullanicimail"] = email;
             Session["kullanicifoto"] = fotograf;
-            Session["doguntarihi"] = dogumtarihi;
+            Session["dogumtarihi"] = dogumtarihi;
             var dd = new { islem = Session["kullanicimail"].ToString() };
             return Json(dd);
+        }
+
+        public ActionResult LogOut()
+        {
+            Session["kullaniciId"] = null;
+            Session["kullaniciadi"] = null;
+            Session["kullaniciisim"] = null;
+            Session["kullanicisoyisim"] = null;
+            Session["kullanicimail"] = null;
+            Session["kullanicifoto"] = null;
+            Session["dogumtarihi"] = null;
+            Session.Abandon();
+            return RedirectToAction("Login", "Uye");
         }
     }
 }

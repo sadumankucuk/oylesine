@@ -10,10 +10,10 @@
 
         <div class="form-group">
             <div class="pull-left image">
-                <img class="img-circle img-responsive" src="~/Content/images/pic/avatar2.png" width="50" alt="uyeFoto" />
+                <img class="img-circle img-responsive" src="~/Content/images/profil.png" width="50" alt="uyeFoto" />
             </div>
             <div class="pull-left info">
-                <h3> Kullanıcı Adı </h3><br /><br />
+                <h3> @Session["kullaniciAdi"] </h3><br /><br />
             </div>
         </div>
     </div>
@@ -21,13 +21,13 @@
     <div class="form-group">
         <div class="row">
             <div class="form-row">
-                <p><i class="fa fa-user"></i> Kullanıcı Adı - Soyadı</p><br />
+                <p><i class="fa fa-user"></i> @Session["kullaniciisim"] @Session["kullanicisoyisim"]</p><br />
             </div>
             <div class="form-row">
-                <p><span class="glyphicon glyphicon-envelope"></span> Eposta </p><br />
+                <p><span class="glyphicon glyphicon-envelope"></span> @Session["kullanicimail"] </p><br />
             </div>
             <div class="form-row">
-                <p><span class="glyphicon glyphicon-gift"></span> Doğum Tarihi</p><br />
+                <p><span class="glyphicon glyphicon-gift"></span> @Session["dogumtarihi"]</p><br />
             </div>
         </div>
     </div>

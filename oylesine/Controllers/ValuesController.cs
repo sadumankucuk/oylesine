@@ -131,15 +131,10 @@ namespace oylesine.Controllers
             {
                 using (db=new oylesineEntities())
                 {
-                    Gonderiler gonderi= db.Gonderilers.Find(gs.gonderiID);
-                    YorumSilIstek yorum = new YorumSilIstek();
+                    Gonderiler gonderi= db.Gonderilers.Find(gs.gonderiID);                
                     db.Gonderilers.Remove(gonderi);
-                    YorumSil(yorum);
-                    //todo begeni sil
                     db.SaveChanges();
                     k.basari = true;
-
-
                 }
             }
             catch
@@ -220,8 +215,48 @@ namespace oylesine.Controllers
             }
             return Control;
         }
+        [HttpPost]
+        public List<GonderiGetir> GonderileriGetir([FromBody]GonderiGetirIstek gs)
+        {
+            List<GonderiGetir> gonderiListesi = new List<GonderiGetir>();
+            using (db=new oylesineEntities())
+            {
+                foreach (Arkadaslik a in db.Arkadasliks.Where(x=>x.Kullanici1ID == gs.kullaniciID))
+                {
+                    foreach (Gonderiler g in a.Kullanicilar1.Gonderilers)
+                    {
+                        GonderiGetir gg = new GonderiGetir();
+                        gg.icerik = g.Icerik;
+                       
+                        gonderiListesi.Add(gg);
+                    }
+                }
+            }
+            return gonderiListesi.OrderByDescending(x => x.gonderiID).ToList();
+        }
 
-
-
+        [HttpPost]
+        public Kullanici kullaniciGiris([FromBody]GirisIstek giris)
+        {
+            using (db=new oylesineEntities())
+            {
+                Kullanici k = new Kullanici();
+                if(db.Kullanicilars.Any(x=> x.Email==giris.email && x.Parola==giris.parola))
+                {
+                    Kullanicilar kullanici = db.Kullanicilars.FirstOrDefault(x => x.Email == giris.email && x.Parola == giris.parola);
+                    k.kullaniciID = kullanici.KullaniciID;
+                    k.Ad = kullanici.Ad;
+                    k.Soyad = kullanici.Soyad;
+                    k.email = kullanici.Email;
+                    k.parola = kullanici.Parola;
+                    k.Fotograf = kullanici.Fotograf;
+                    k.dogumTarihi = Convert.ToDateTime(kullanici.DogumTarihi);
+                    k.telefon = kullanici.Telefon;
+                    k.cinsiyetID = (int)kullanici.CinsiyetID;
+                    k.kayitTarihi = Convert.ToDateTime(kullanici.KayitTarihi);
+                }
+                return k;
+            }        
+        }
     }
 }

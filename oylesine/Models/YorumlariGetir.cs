@@ -5,10 +5,9 @@ using System.Web;
 
 namespace oylesine.Models
 {
-    public class YorumIstek
+    public class YorumlariGetir
     {
-        public int gonderiID { get; set; }
-        public int kullaniciID { get; set; }
+        public string kullaniciAdi { get; set; }
         public string yorum { get; set; }
         public DateTime yorumTarihi { get; set; }
     }

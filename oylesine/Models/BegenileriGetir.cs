@@ -5,9 +5,8 @@ using System.Web;
 
 namespace oylesine.Models
 {
-    public class GonderiGetirIstek
+    public class BegenileriGetir
     {
-        public int kullaniciID { get; set; }
-      
+        public string kullaniciAdi { get; set; }
     }
 }

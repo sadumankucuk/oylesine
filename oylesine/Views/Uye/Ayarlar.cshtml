@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="col-md-offset-4 col-md-8">
-            <a class="btn  btn-primary btn-info pull-right" href="#" id="guncelle">Profili Güncelle</a><br /><br /><br /><br />
+            <a class="btn  btn-primary btn-info pull-right" keyID="@ViewBag.KID" href="#" id="guncelle">Profili Güncelle</a><br /><br /><br /><br />
        
         </div>
     </div>
@@ -66,20 +66,29 @@
                 var ePosta = $("#ePosta").val()
                 var parola = $("#parola").val()
                 var parolaDogrulama = $("#parolaDogrulama").val()
+                var KID = $(this).attr("keyID");
+                
                 if (parola == parolaDogrulama)
                 {
                     var parameters = {
 
                         kullaniciAdi: kullaniciAdi,
                         email: ePosta,
-                        parola: parola
+                        parola: parola,
+                        kullaniciID: KID
                     }
                     console.log(parameters);
-                    $.post("/api/Values/KullaniciGuncelle", parameters, function (result) {
-                        console.log(result);
-                        window.location.href = "/Uye/Profil";
-                    });
-
+                    $.ajax({
+                        url: '/api/Values/KullaniciGuncelle',
+                        data: parameters,
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function (data1) {
+                            console.log(data1);
+                            window.location.href = 'Profil';
+                                                         
+                        }
+                        });
                 }
                 else
                 {

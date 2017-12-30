@@ -288,10 +288,12 @@ namespace oylesine.Controllers
             }
         }
         [HttpPost]
-        public void KullaniciGuncelle([FromBody]Kullanici k)
+        public Kullanici KullaniciGuncelle([FromBody]Kullanici k)
         {
+            Kullanici kul=new Kullanici();
             using (db=new oylesineEntities())
             {
+               
                 Kullanicilar kullanici = db.Kullanicilars.Find(k.kullaniciID);
                 if (k.kullaniciAdi != " ")
                     kullanici.KullaniciAdi = k.kullaniciAdi;
@@ -299,11 +301,20 @@ namespace oylesine.Controllers
                     kullanici.Email = k.email;
                 if (k.parola != " ")
                     kullanici.Parola = k.parola;
+                if (k.Ad != " ")
+                    kullanici.Ad = k.Ad;
+                if (k.Soyad != " ")
+                    kullanici.Soyad = k.Soyad;
                 //if(k.Fotograf!=" ")
                 //    kullanici.Fotograf = k.Fotograf;
                 db.SaveChanges();
-            }
+                kul.kullaniciAdi = kullanici.KullaniciAdi;
+                kul.Ad = kullanici.Ad;
+                kul.Soyad = kullanici.Soyad;
+                kul.email = kullanici.Email;
 
+            }
+            return kul;
         }
         [HttpPost]
         public List<YorumlariGetir> yorumlariGetir([FromBody]YorumGetirIstek y)

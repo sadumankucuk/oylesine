@@ -293,14 +293,14 @@ namespace oylesine.Controllers
             using (db=new oylesineEntities())
             {
                 Kullanicilar kullanici = db.Kullanicilars.Find(k.kullaniciID);
-                if (k.kullaniciAdi != "")
+                if (k.kullaniciAdi != " ")
                     kullanici.KullaniciAdi = k.kullaniciAdi;
                 if (k.email != " ")
                     kullanici.Email = k.email;
                 if (k.parola != " ")
                     kullanici.Parola = k.parola;
-                if(k.Fotograf!=" ")
-                    kullanici.Fotograf = k.Fotograf;
+                //if(k.Fotograf!=" ")
+                //    kullanici.Fotograf = k.Fotograf;
                 db.SaveChanges();
             }
 

@@ -204,10 +204,12 @@
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BegeniGeriAlIstek.cs" />
+    <Compile Include="Models\BegeniGetirIstek.cs" />
     <Compile Include="Models\BegeniIstek.cs" />
     <Compile Include="Models\Begeniler.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BegenileriGetir.cs" />
     <Compile Include="Models\Cinsiyetler.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
@@ -247,10 +249,12 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\YorumGetirIstek.cs" />
     <Compile Include="Models\YorumIstek.cs" />
     <Compile Include="Models\Yorumlar.cs">
       <DependentUpon>oylesine.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\YorumlariGetir.cs" />
     <Compile Include="Models\YorumSilIstek.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

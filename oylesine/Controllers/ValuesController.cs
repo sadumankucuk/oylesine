@@ -304,5 +304,48 @@ namespace oylesine.Controllers
             }
 
         }
+        [HttpPost]
+        public List<YorumlariGetir> yorumlariGetir([FromBody]YorumGetirIstek y)
+        {
+            using (db=new oylesineEntities())
+            {
+                List<YorumlariGetir> yorumListesi = new List<YorumlariGetir>();
+                foreach (Gonderiler g in db.Gonderilers.Where(x=> x.GonderiID == y.gonderiID))
+                {
+                    foreach (Yorumlar yorum in g.Yorumlars)
+                    {
+                        YorumlariGetir yg = new YorumlariGetir();
+                        Kullanicilar k = db.Kullanicilars.First(x => x.KullaniciID == yorum.KullaniciID);
+                        yg.kullaniciAdi = k.KullaniciAdi;
+                        yg.yorum = yorum.Yorum;
+                        yg.yorumTarihi = Convert.ToDateTime(yorum.YorumTarihi);
+                        yorumListesi.Add(yg);
+                    }
+                   
+                }
+                return yorumListesi.OrderByDescending(x => x.yorumTarihi).ToList();
+            }
+        }
+        [HttpPost]
+        public List<BegenileriGetir> begenileriGetir([FromBody]BegeniGetirIstek b)
+        {
+            using (db = new oylesineEntities())
+            {
+                List<BegenileriGetir> begeniListesi = new List<BegenileriGetir>();
+                foreach (Gonderiler g in db.Gonderilers.Where(x => x.GonderiID == b.gonderiID))
+                {
+                    foreach (Begeniler begeni in g.Begenilers)
+                    {
+                        BegenileriGetir bg = new BegenileriGetir();
+                        Kullanicilar k = db.Kullanicilars.First(x => x.KullaniciID == begeni.KullaniciID);
+                        bg.kullaniciAdi = k.KullaniciAdi;
+                     
+                        begeniListesi.Add(bg);
+                    }
+
+                }
+                return begeniListesi.OrderByDescending(x => x.kullaniciAdi).ToList();
+            }
+        }
     }
 }

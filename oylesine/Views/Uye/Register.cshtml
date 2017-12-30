@@ -149,7 +149,7 @@
                         email: ePosta,
                         parola: parola
                     }
-
+                                        
                     $.post("/api/Values/KullaniciEkle", parameters, function (result) {
                         console.log(result.basari);
                         if (result.basari == true) {

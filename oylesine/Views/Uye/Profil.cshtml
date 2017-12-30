@@ -31,39 +31,29 @@
             </div>
         </div>
     </div>
-</div>
+    <div class="form-group col-md-8" id="pg">
+
+     </div>
+    </div>
 <script type="text/javascript">
-        $(function () {
-            $("#kayit").click(function () {
-                console.log("tıklandı");
-                var isim = $("#isim").val();
-                var soyisim = $("#soyisim").val()
-                var kullaniciAdi = $("#kullaniciAdi").val()
-                var ePosta = $("#ePosta").val()
-                var tarihGun = $("#tarihGun").val()
-                var tarihAy = $("#tarihAy").val()
-                var tarihYil = $("#tarihYil").val()
-                var parola = $("#parola").val()
+    $(function () {
+        console.log("içerde");
+        var paras= {kullaniciID:@Session["kullaniciId"]}
 
-                var parameters = {
-                    ad:isim,
-                    soyad:soyisim,
-                    kullaniciAdi: kullaniciAdi,
-                    email: ePosta,
-                    parola: parola
-                }
+        $ajax({
+            url: '/api/Values/ProfilGonderileriGetir',
+            data: params,
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                consele.log(data);
+                $(data).each(function () {
+                    console.log($(this.icerik).selector);
+                    $("#pg").append("<p>" + $(this.icerik).selector) + "<p>";
+                })
+            }
+        })
 
-                $.post("/api/Values/KullaniciEkle", parameters, function (result) {
-                    console.log(result.basari);
-                });
-            });
-        });
-</script>
-<script type="text/javascript">
-    //$(document).ready(function () {
-
-    //    $.post("/api/Values/ProfilGonderileriGetir", parameters, function (result) {
-    //        console.log(result);
-    //    });
-    //});
+    });
+       
 </script>

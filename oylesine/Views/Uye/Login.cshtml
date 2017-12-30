@@ -36,7 +36,6 @@
             Kullanıcı Girişi
         </div>
         <div class="card-body">
-            <form>
                 <div class="form-group">
                     <label for="ePosta">Eposta adresi : </label>
                     <input type="email" class="form-control" name="ePosta" id="ePosta" aria-describedby="emailHelp" placeholder="Eposta adresinizi girin">
@@ -45,8 +44,7 @@
                     <label for="parola">Parola : </label>
                     <input type="password" class="form-control" id="parola" name="parola" placeholder="Parolanızı girin">
                 </div>                
-                <a class="btn btn-primary btn-block" href="#">Giriş Yap</a>
-            </form>
+                <button class="btn btn-primary btn-block" id="loginBtn" type="button" >Giriş Yap</button>
             <div class="text-center">
                 <a class="d-block small mt-3" href="~/Uye/Register">Kayıt Ol</a>
             </div>
@@ -68,7 +66,50 @@
     <!-- End Browser Link -->
 
 
+    <script>
+        $(function () {
+            $("#loginBtn").click(function () {
+                console.log("içindeyim")
+                var email = $("input#ePosta").val();
+                var password = $("input#parola").val();
 
+                var params = { email: email, parola: password };
+                console.log(params);
+                console.log("içinden geçtim");
+                $.ajax({
+                    url: '/api/Values/kullaniciGiris',
+                    data: params,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data1) {
+                        //console.log(data1);
+                        if (data1.kullaniciID != 0) {
+                            $.ajax({
+                                url: 'SessionRegister',
+                                data: data1,
+                                type: 'POST',
+                                dataType: 'json',
+                                success: function (data) {
+                                    //console.log(data);
+                                   // console.log(@Session["kullanicimail"].ToString());
+                                    window.location.href = "/Home/Index";
+                                }
+                            });
+                        } else {
+                            alert("şifre veya kullanıcı adı yanlış");
+                        }
+                       
+                        
+                        
+                        
+                        
+                        
+                       // window.location.href = "http://www.google.com";
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 

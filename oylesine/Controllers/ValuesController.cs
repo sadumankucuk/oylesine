@@ -236,15 +236,16 @@ namespace oylesine.Controllers
         }
 
         [HttpPost]
-        public Kullanici kullaniciGiris([FromBody]GirisIstek giris)
+        public Kullanici kullaniciGiris([FromBody] GirisIstek giris)
         {
-            using (db=new oylesineEntities())
+            using (db = new oylesineEntities())
             {
                 Kullanici k = new Kullanici();
-                if(db.Kullanicilars.Any(x=> x.Email==giris.email && x.Parola==giris.parola))
+                if (db.Kullanicilars.Any(x => x.Email == giris.email && x.Parola == giris.parola))
                 {
-                    Kullanicilar kullanici = db.Kullanicilars.FirstOrDefault(x => x.Email == giris.email && x.Parola == giris.parola);
+                    Kullanicilar kullanici = db.Kullanicilars.Where(x => x.Email == giris.email && x.Parola == giris.parola).FirstOrDefault();
                     k.kullaniciID = kullanici.KullaniciID;
+                    k.kullaniciAdi = kullanici.KullaniciAdi;
                     k.Ad = kullanici.Ad;
                     k.Soyad = kullanici.Soyad;
                     k.email = kullanici.Email;
@@ -252,11 +253,34 @@ namespace oylesine.Controllers
                     k.Fotograf = kullanici.Fotograf;
                     k.dogumTarihi = Convert.ToDateTime(kullanici.DogumTarihi);
                     k.telefon = kullanici.Telefon;
-                    k.cinsiyetID = (int)kullanici.CinsiyetID;
+                    k.cinsiyetID = Convert.ToInt32(kullanici.CinsiyetID);
                     k.kayitTarihi = Convert.ToDateTime(kullanici.KayitTarihi);
                 }
                 return k;
-            }        
+            }
         }
+        //[HttpPost]
+        //public Kullanici kullaniciGiris([FromBody] )
+        //{
+        //    using (db = new oylesineEntities())
+        //    {
+        //        Kullanici k = new Kullanici();
+        //        if (db.Kullanicilars.Any(x => x.Email == email && x.Parola == parola))
+        //        {
+        //            Kullanicilar kullanici = db.Kullanicilars.FirstOrDefault(x => x.Email == email && x.Parola == parola);
+        //            k.kullaniciID = kullanici.KullaniciID;
+        //            k.Ad = kullanici.Ad;
+        //            k.Soyad = kullanici.Soyad;
+        //            k.email = kullanici.Email;
+        //            k.parola = kullanici.Parola;
+        //            k.Fotograf = kullanici.Fotograf;
+        //            k.dogumTarihi = Convert.ToDateTime(kullanici.DogumTarihi);
+        //            k.telefon = kullanici.Telefon;
+        //            k.cinsiyetID = (int)kullanici.CinsiyetID;
+        //            k.kayitTarihi = Convert.ToDateTime(kullanici.KayitTarihi);
+        //        }
+        //        return k;
+        //    }
+        //}
     }
 }

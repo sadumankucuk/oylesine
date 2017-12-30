@@ -16,6 +16,12 @@ namespace oylesine.Controllers
 
         public ActionResult Login()
         {
+            Session["kullaniciAdi"] = "";
+            Session["kullaniciIsim"] = "";
+            Session["kullaniciSoyisim"] = "";
+            Session["kullaniciMail"] = "";
+            Session["kullaniciFoto"] = "";
+            Session["dogunTarihi"] = "";
             return View();
         }
         public ActionResult Register()
@@ -37,5 +43,16 @@ namespace oylesine.Controllers
             return View();
         }
 
+        public JsonResult SessionRegister(string kullaniciadi, string ad, string soyad, string email, string fotograf, string dogumtarihi)
+        {
+            Session["kullaniciadi"] = kullaniciadi;
+            Session["kullaniciısim"] = ad;
+            Session["kullanicisoyisim"] = soyad;
+            Session["kullanicimail"] = email;
+            Session["kullanicifoto"] = fotograf;
+            Session["doguntarihi"] = dogumtarihi;
+            var dd = new { islem = Session["kullanicimail"].ToString() };
+            return Json(dd);
+        }
     }
 }

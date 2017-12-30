@@ -23,6 +23,8 @@
     <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="~/Content/images/favicon/apple-touch-icon.png">
 
     <!-- All CSS Plugins -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="~/Content/css/plugin.css">
 
     <!-- Main CSS Stylesheet -->
@@ -69,9 +71,10 @@
                             <a href="javascript:void(0)" class="collapsed" data-target="#menu" data-toggle="collapse"><i class="icon-menu menu"></i></a>
                             <div id="menu" class="collapse">
                                 <ul class="menu-link">
-                                    <li><a href="#">Profil</a></li>
-                                    <li><a href="#">Work</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="~/Uye/Profil">Profil</a></li>
+                                    <li><a href="~/Uye/Arkadaslar">Arkadaşlar</a></li>
+                                    <li><a href="~/Uye/Ayarlar">Ayarlar</a></li>
+                                    <li><a href="#">Çıkış</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -81,17 +84,14 @@
                         <div class="my-detail">
 
                             <div class="white-spacing">
-                                <h1>Alex Parker</h1>
-                                <span>Web Developer</span>
+                                <h1>Kullanıcı Adı</h1>
                             </div>
 
-                            <ul class="social-icon">
-                                <li><a href="#" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#" target="_blank" class="github"><i class="fa fa-github"></i></a></li>
-                            </ul>
+                            <div>
+                               
+                           <h4><a href="#"><span class="glyphicon glyphicon-hand-up"></span>Bi bakar mısın?</a></h4><br /><br />
 
+</div>
                         </div>
                     </div>
                 </div>
@@ -117,18 +117,12 @@
                     <div class="col-md-12 page-body margin-top-50 footer">
                         <footer>
                             <ul class="menu-link">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="work.html">Work</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
+                                <li><a href="index.html">Anasayfa</a></li>
+                                <li><a href="about.html">Profil</a></li>
+                                <li><a href="work.html">Ayarlar</a></li>
+                       </ul>
 
-                            <p>© Copyright 2016 DevBlog. All rights reserved</p>
-
-
-                            <!-- UiPasta Credit Start -->
-                            <div class="uipasta-credit">Design By <a href="http://www.uipasta.com" target="_blank">UiPasta</a></div>
-                            <!-- UiPasta Credit End -->
+                            <p>© Copyright @DateTime.Now.Year</p>
 
 
                         </footer>
@@ -158,7 +152,7 @@
 
 
 
-    <div id="endpage-box" class="endpage-box animation-flyInLeft" data-status="off" style="display: block;">Better Add something cool here.</div>
+    
 </body>
 
 </html>

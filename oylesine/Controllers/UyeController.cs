@@ -26,5 +26,16 @@ namespace oylesine.Controllers
         {
             return View();
         }
+
+        public ActionResult Ayarlar()
+        {
+            return View();
+        }
+
+        public ActionResult Arkadaslar()
+        {
+            return View();
+        }
+
     }
 }

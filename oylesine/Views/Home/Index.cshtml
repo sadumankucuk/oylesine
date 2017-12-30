@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int kullaniciID = Convert.ToInt32(ViewBag.kullaniciId);
+    
 }
 
 
@@ -18,27 +18,33 @@
 
             </div>
         </div>
-        <div id="pp">
+        <div class="form-group col-md-8" id="pp">
 
         </div>
     </div>
 </div>
 
 <script>
-    $(document).ready(function () {
-        var params = @Session["kullaniciID"];
+    $(function () {
+        console.log("icerde");
+
+        var params = { kullaniciID: @Session["kullaniciId"] };
+
         $.ajax({
             url: '/api/Values/GonderileriGetir',
             data: params,
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                console.log(data.icerik);
-                for(var i=0; i<data.count; i++){
-                    $("#pp").append("<p>" + data.icerik + "</p>");
-                }
-                
-                
+                console.log(data);
+                $(data).each(function(){
+                    console.log($(this.icerik).selector);
+                    $("#pp").append("<p><i class=\"fa fa-user\"></i>" + $(this.kullaniciAdi).selector + "</p>");
+                    $("#pp").append("<p align=\"center\">" + $(this.icerik).selector + "</p><br />");
+                    $("#pp").append(" <button type=\"submit\" class=\" btn  btn-primary btn-info pull-right\">Sev!</button><br /><br /><br /><br />");
+                });
+
+
             }
         });
     });

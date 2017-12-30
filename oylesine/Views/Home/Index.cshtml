@@ -2,14 +2,50 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 
 <div class="container">
-
+    
     <div class="row">
         <div class="form-group col-md-8">
-            <textarea class="form-control" rows="4" placeholder="Hadi, bir şeyler yolla..."></textarea>
+            <br /><br /><textarea class="form-control" rows="4" placeholder="Hadi, bir şeyler yolla..."></textarea><br />
+        </div>
+        <div class="form-group">
+            <div class="col-md-8">
+                <button type="submit" class="btn  btn-primary btn-info pull-right">Yolla!</button><br /><br /><br /><br />
+
+            </div>
+        </div>
+        <div class="form-group col-md-8" id="pp">
+
         </div>
     </div>
 </div>
+
+<script>
+    $(function () {
+        console.log("icerde");
+
+        var params = { kullaniciID: @Session["kullaniciId"] };
+
+        $.ajax({
+            url: '/api/Values/GonderileriGetir',
+            data: params,
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $(data).each(function(){
+                    console.log($(this.icerik).selector);
+                    $("#pp").append("<p><i class=\"fa fa-user\"></i>" + $(this.kullaniciAdi).selector + "</p>");
+                    $("#pp").append("<p align=\"center\">" + $(this.icerik).selector + "</p><br />");
+                    $("#pp").append(" <button type=\"submit\" class=\" btn  btn-primary btn-info pull-right\">Sev!</button><br /><br /><br /><br />");
+                });
+
+
+            }
+        });
+    });
+</script>

@@ -27,10 +27,10 @@ namespace oylesine.Controllers
                         KullaniciAdi = k.kullaniciAdi,
                         Email = k.email,
                         Parola = k.parola,
-                        Fotograf = k.fotograf,
-                        DogumTarihi = Convert.ToDateTime(k.dogumTarihi),
-                        Telefon = k.telefon,
-                        CinsiyetID = k.cinsiyetID,
+                        //Fotograf = k.fotograf,
+                        //DogumTarihi = Convert.ToDateTime(k.dogumTarihi),
+                        //Telefon = k.telefon,
+                        //CinsiyetID = k.cinsiyetID,
                         KayitTarihi = DateTime.Now
                     });
                     db.SaveChanges();

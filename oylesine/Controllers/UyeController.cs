@@ -30,6 +30,7 @@ namespace oylesine.Controllers
         }
         public ActionResult Profil()
         {
+            ViewBag.kullaniciId = Session["kullaniciId"];
             return View();
         }
 

@@ -10,7 +10,8 @@ namespace oylesine.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {      
+        {
+            ViewBag.kullaniciId = Session["kullaniciID"];
             return View();
         }
     }

@@ -36,6 +36,7 @@ namespace oylesine.Controllers
 
         public ActionResult Ayarlar()
         {
+            ViewBag.KID = Session["kullaniciID"].ToString();
             return View();
         }
 
